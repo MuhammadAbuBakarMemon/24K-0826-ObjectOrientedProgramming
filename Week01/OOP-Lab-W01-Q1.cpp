@@ -1,3 +1,5 @@
+//not the correct code i'll try working over it afterwards, please sir  don'tt mark this
+
 #include <iostream>
 using namespace std;
 
