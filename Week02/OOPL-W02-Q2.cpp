@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 
     ray = static_cast<int*>(addToArray(static_cast<void*>(ray), size));
 
-    cout << "Modified array: ";
+    cout << "Modified array: " << endl;
     for (int i = 0; i < size; ++i) {
         cout << ray[i] << " ";
     }
