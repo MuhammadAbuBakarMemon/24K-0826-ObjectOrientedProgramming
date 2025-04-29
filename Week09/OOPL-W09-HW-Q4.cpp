@@ -1,29 +1,66 @@
+#include <iostream>
 #include <string>
+using namespace std;
+
 
 class Student {
 public:
-    virtual double getTuition(const std::string& status, int creditHours) const = 0;
-    virtual ~Student() = default;
+    
+    virtual double getTuition(string status, int creditHours) = 0;
+    
+    
+    virtual ~Student() {}
 };
+
 
 class GraduateStudent : public Student {
 private:
-    std::string researchTopic;
+    string researchTopic;
 
 public:
-    
-    double getTuition(const std::string& status, int creditHours) const override {
-        if (status == "undergraduate") return 200 * creditHours;
-        else if (status == "graduate") return 300 * creditHours;
-        else if (status == "doctoral") return 400 * creditHours;
-        return 0; // Handle invalid status if needed
-    }
-
-    void setResearchTopic(const std::string& topic) {
+    void setResearchTopic(string topic) {
         researchTopic = topic;
     }
 
-    std::string getResearchTopic() const {
+    string getResearchTopic() const {
         return researchTopic;
     }
+
+    // Override getTuition function
+    double getTuition(string status, int creditHours) override {
+        if (status == "undergraduate") {
+            return creditHours * 200;
+        } else if (status == "graduate") {
+            return creditHours * 300;
+        } else if (status == "doctoral") {
+            return creditHours * 400;
+        } else {
+            cout << "Invalid status provided!" << endl;
+            return 0.0;
+        }
+    }
 };
+
+// Main function
+int main() {
+    GraduateStudent gradStudent;
+    
+
+    gradStudent.setResearchTopic("Artificial Intelligence in Education");
+
+
+    string status;
+    int creditHours;
+
+    cout << "Enter student status (undergraduate / graduate / doctoral): ";
+    cin >> status;
+
+    cout << "Enter number of credit hours: ";
+    cin >> creditHours;
+
+
+    cout << "\nResearch Topic: " << gradStudent.getResearchTopic() << endl;
+    cout << "Tuition Fee: $" << gradStudent.getTuition(status, creditHours) << endl;
+
+    return 0;
+}
